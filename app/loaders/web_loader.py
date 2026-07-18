@@ -2,6 +2,11 @@ from app.loaders.base_loader import BaseLoader
 from langchain_core.documents import Document
 from langchain_community.document_loaders import UnstructuredURLLoader
 
+
+from app.utils.logger import get_logger
+
+logger = get_logger(__name__)
+
 class WebLoader(BaseLoader):
     """
     Loads one or more web pages and converts them into LangChain Documents.
@@ -11,5 +16,11 @@ class WebLoader(BaseLoader):
         self._urls = urls
 
     def load(self) -> list[Document]:
+        logger.info("Loading %d URL(s)...", len(self._urls))
+
         loader = UnstructuredURLLoader(urls=self._urls)
-        return loader.load()
+        documents = loader.load()
+
+        logger.info("Successfully loaded %d document(s).", len(documents))
+
+        return documents
