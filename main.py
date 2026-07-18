@@ -11,10 +11,19 @@ def main() -> None:
 
     documents = loader.load()
 
-    splitter = RecursiveSplitter()
+    splitter = RecursiveSplitter(chunk_size=1000, chunk_overlap=200)
     chunks =splitter.split(documents)
 
-    
+    # sum = 0
+
+    # print(len(chunks))
+    # for i, chunk in enumerate(chunks):
+    #     print(f"Chunk {i + 1}")
+    #     print(f"Length : {len(chunk.page_content)}")
+    #     print()
+    #     sum = sum + len(chunk.page_content)
+
+    # print(f"avg: {sum/len(chunks)}")
 
 if __name__== "__main__":
     main()
