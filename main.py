@@ -1,4 +1,5 @@
 from app.loaders.web_loader import WebLoader
+from app.splitters.recursive_splitter import RecursiveSplitter
 
 
 def main() -> None:
@@ -10,10 +11,10 @@ def main() -> None:
 
     documents = loader.load()
 
-    print(f"Loaded {len(documents)} document(s).")
-    first_doc = documents[0]
+    splitter = RecursiveSplitter()
+    chunks =splitter.split(documents)
 
-    print(first_doc)
+    
 
 if __name__== "__main__":
     main()
