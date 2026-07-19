@@ -1,5 +1,6 @@
 from app.loaders.web_loader import WebLoader
 from app.splitters.recursive_splitter import RecursiveSplitter
+from app.embeddings.huggingface_embeddings import HuggingFaceEmb
 
 
 def main() -> None:
@@ -24,6 +25,15 @@ def main() -> None:
     #     sum = sum + len(chunk.page_content)
 
     # print(f"avg: {sum/len(chunks)}")
+
+    embedding = HuggingFaceEmb()
+    vector = embedding.embed_query(
+        "What is langchain?"
+    )
+
+    print(type(vector))
+    print(len(vector))
+    print(vector[:10])
 
 if __name__== "__main__":
     main()
